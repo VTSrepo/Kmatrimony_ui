@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "constants.scss";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+h3{
+    color:#00b4d8 !important;
+}
+
+.btn-primary{    
+    color: #00b4d8!important;
+    background-color: white!important;
+    border-color:#00b4d8!important;
+    &:hover{
+        color:white!important;
+        background-color: #00b4d8!important;
+    }
+}
+
+.kkkr-font {
+    color:#00b4d8 !important;
+}
+
+
+
+@media (max-width: 768px) {
+    .hide-mobile {
+      display: none !important;
+    }
+    .mobile-scroll {
+      overflow-x: scroll;
+    }
+  }
+
+

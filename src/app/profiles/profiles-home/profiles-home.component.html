@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="text-center mt-3" *ngIf="isAdmin">
+        <button class="btn btn-primary" (click)="gotoProfile()">Create Profile</button>
+    </div>
+    <div class="container mt-5" *ngIf="profiles && profiles.length > 0">
+       <app-profile-table [profileTableData]="profiles" [isAdmin]="isAdmin"></app-profile-table>
+    </div>
+</div>

@@ -1,0 +1,125 @@
+<section class="mat-elevation-z8" tabindex="0">
+  <div class="example-header">
+    <mat-form-field class="mar20lr">
+      <input
+        matInput
+        (keyup)="applyFilter($any($event.target).value)"
+        placeholder="Filter"
+      />
+    </mat-form-field>
+  </div>
+  <div class="example-container mobile-scroll">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8"
+      id="appoinment-table"
+    >
+      <ng-container matColumnDef="profile_name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.profile_name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="dob">
+        <th mat-header-cell *matHeaderCellDef>DOB</th>
+        <td mat-cell *matCellDef="let element">
+          {{ formatDate(element.dob) }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="age">
+        <th mat-header-cell *matHeaderCellDef>Age</th>
+        <td mat-cell *matCellDef="let element">{{ element.age }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="gothram">
+        <th mat-header-cell *matHeaderCellDef>Gothram</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.gothram }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="caste_sect">
+        <th mat-header-cell *matHeaderCellDef>Caste</th>
+        <td mat-cell *matCellDef="let element">{{ element.caste_sect }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="subsect">
+        <th mat-header-cell *matHeaderCellDef>SubSect</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.subsect }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="star">
+        <th mat-header-cell *matHeaderCellDef>Star</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.star }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="star_paadam">
+        <th mat-header-cell *matHeaderCellDef>Star Paadam</th>
+        <td mat-cell *matCellDef="let element">{{ element.star_paadam }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="rasi">
+        <th mat-header-cell *matHeaderCellDef>Rasi</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.rasi }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="education">
+        <th mat-header-cell *matHeaderCellDef>Education</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.education }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="job_location">
+        <th mat-header-cell *matHeaderCellDef>Job Location</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.job_location }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon
+            title="edit"
+            class="remove_red_eye"
+            aria-hidden="false"
+            aria-label="Example home icon"
+            (click)="gotoProfile(element)"
+            >remove_red_eye</mat-icon
+          >
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sortlist">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            class="btn btn-primary"
+            *ngIf="showListingAction && element.action === 'Delist'"
+            (click)="delist(element)"
+          >
+            Delist
+          </button>
+          <button
+            class="btn btn-primary"
+            *ngIf="showListingAction && element.action === 'Shortlist'"
+            (click)="shortList(element)"
+          >
+            Shortlist
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</section>

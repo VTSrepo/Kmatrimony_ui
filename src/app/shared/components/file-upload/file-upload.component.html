@@ -1,0 +1,56 @@
+<p style="color:red;font-weight: 600;" *ngIf="uploadLimitReached">No more upload allowed.</p>
+<div class="file-upload" *ngIf="isAdmin && !uploadLimitReached">
+    <h3>Uploads</h3>
+    
+    <div class="form-group col-md-2">
+      <label for="doctype">Photo Type</label>
+      <select
+        class="form-select"
+        id="doctype"
+        [(ngModel)]="doctype"
+      >
+        <option
+          *ngFor="let doc of uploadTypes"
+          [value]="doc.type" [ngClass]="{ 'hideitem': doc.hidden }"
+        >
+          {{ doc.type }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group col-md-2 mt-2">
+      <input type="file" (change)="onFileSelected($event)" />
+    </div>
+   
+    <div class="form-group col-md-2 mt-2">
+      <button [disabled]="!selectedFile || !doctype" (click)="uploadFile()">Upload</button>
+      <button style="margin-left: 20px;" (click)="refresh()">Refresh</button>
+    </div>
+    
+  
+    <p style="color:green;font-weight: 600;">{{ uploadStatus }}</p>
+  </div>
+
+
+  <table class="table" *ngIf="files.length>0">
+    <thead>
+      <tr>        
+        <th scope="col">File</th>
+        <th scope="col">Action</th>        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let file of files">
+        
+        <td>{{file}}</td>
+        <td><button><mat-icon
+            title="edit"
+            class="remove_red_eye"
+            aria-hidden="false"
+            aria-label="Example home icon"
+            (click)="viewImage(file)"
+            >remove_red_eye</mat-icon
+          ></button></td>
+      </tr>
+      
+    </tbody>
+  </table>

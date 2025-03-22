@@ -1,0 +1,26 @@
+<div class="loginContainer">
+  <div class="loginMain">
+    <form class="loginModules">
+      <div class="loginHeading">Login</div>
+      <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+        {{errorMessage}}
+      </div>
+      <label htmlFor="username" class="loginlabel">Username</label>
+      <input type="text" class="loginInput" [(ngModel)]="credentials.username" name="username"/>
+      <label htmlFor="password" class="loginlabel">Password</label>
+      <input type="password" class="loginInput" [(ngModel)]="credentials.password" name="pasword"/>
+      <div class="forgetPassword">
+        <a href="" [routerLink]="'/forgot-password'">Forget Password?</a>
+      </div>
+
+      <div class="loginButtons">
+        <button class="loginButton" (click)="onSubmit()">Login</button>
+      </div>
+      <!-- <div class="or">Or</div> -->
+
+      <!-- <div class="registerAcc">
+        <a [routerLink]="'/register'">Don't have an account? Register here</a>
+      </div> -->
+    </form>
+  </div>
+</div>

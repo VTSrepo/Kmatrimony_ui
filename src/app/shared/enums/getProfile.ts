@@ -1,0 +1,5 @@
+export enum GetProfile {
+    ALL = "ALL",
+    LAST7DAYSCREATION = "LAST7DAYSCREATION",
+    LAST10DAYSUBS = "LAST10DAYSUBS"
+}

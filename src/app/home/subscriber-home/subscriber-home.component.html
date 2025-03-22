@@ -1,0 +1,65 @@
+<div class="accordion mt-3" id="admin-home-accordion" *ngIf="!showMatchTable">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseOne"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+      >
+        My profiles
+      </button>
+    </h2>
+    <div
+      id="collapseOne"
+      class="accordion-collapse collapse show"
+      data-bs-parent="#accordionExample"
+    >
+      <div class="accordion-body">
+        <app-subscriber-home-table
+          [profileTableData]="myProfiles"
+          (matchEmit)="matchEmitter($event)"
+          [showMatchIcon]="true"
+        ></app-subscriber-home-table>
+      </div>
+    </div>
+  </div>
+  <br />
+</div>
+
+
+<div class="accordion mt-3" id="admin-home-accordion" *ngIf="!showMatchTable">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapsetwo"
+        aria-expanded="true"
+        aria-controls="collapsetwo"
+      >
+        My Listings
+      </button>
+    </h2>
+    <div
+      id="collapsetwo"
+      class="accordion-collapse collapse show"
+      data-bs-parent="#accordionExample"
+    >
+      <div class="accordion-body">
+        <app-subscriber-match-table
+          [profileTableData]="shortlistings"          
+          [showListingAction]="false"
+        ></app-subscriber-match-table>
+      </div>
+    </div>
+  </div>
+  <br />
+</div>
+
+<div *ngIf="showMatchTable">
+  <app-subscriber-search [profile]="profile" (backToHome)="showMatchTable = false"></app-subscriber-search>
+</div>
