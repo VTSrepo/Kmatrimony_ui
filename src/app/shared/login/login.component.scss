@@ -51,6 +51,9 @@
     color: #fff;
     background-color: #00b4d8;
     font-size: 14px;
+    &:disabled{
+      opacity: 0.5;
+    }
   }
   
   .loginButton:hover{

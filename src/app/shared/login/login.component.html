@@ -1,7 +1,9 @@
 <div class="loginContainer">
   <div class="loginMain">
     <form class="loginModules">
-      <div class="loginHeading">Login</div>
+      <div class="loginHeading">
+        <img src="assets/img/logo.jpeg" height=150 alt="Logo">
+      </div>
       <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
         {{errorMessage}}
       </div>
@@ -9,12 +11,19 @@
       <input type="text" class="loginInput" [(ngModel)]="credentials.username" name="username"/>
       <label htmlFor="password" class="loginlabel">Password</label>
       <input type="password" class="loginInput" [(ngModel)]="credentials.password" name="pasword"/>
-      <div class="forgetPassword">
-        <a href="" [routerLink]="'/forgot-password'">Forget Password?</a>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="acceptTC"  id="flexCheckDefault" [(ngModel)]="acceptTC"
+        (change)="checkValue(acceptTC?'acceptTC=true':'acceptTC=false')">
+        <label class="form-check-label" for="flexCheckDefault">
+          Accept Terms & Conditions
+        </label>
       </div>
+      <!-- <div class="forgetPassword">
+        <a href="" [routerLink]="'/forgot-password'">Forget Password?</a>
+      </div> -->
 
       <div class="loginButtons">
-        <button class="loginButton" (click)="onSubmit()">Login</button>
+        <button class="loginButton"  [disabled]="acceptTC === false" (click)="onSubmit()">Login</button>
       </div>
       <!-- <div class="or">Or</div> -->
 

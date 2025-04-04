@@ -10,9 +10,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppService } from './app.service';
 import { CanActivateRoute, Permissions } from './shared/services/authguard.service';
+import { AboutUsComponent } from './shared/about-us/about-us.component';
+import { DisclaimerComponent } from './shared/disclaimer/disclaimer.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AboutUsComponent,
+    DisclaimerComponent
   ],
   imports: [
     BrowserModule,

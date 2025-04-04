@@ -61,5 +61,5 @@
 </div>
 
 <div *ngIf="showMatchTable">
-  <app-subscriber-search [profile]="profile" (backToHome)="showMatchTable = false"></app-subscriber-search>
+  <app-subscriber-search [profile]="profile" (backToHome)="reloadHome()"></app-subscriber-search>
 </div>

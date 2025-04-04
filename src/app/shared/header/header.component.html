@@ -28,12 +28,15 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="'/home'">Home</a>
         </li>
-        <li class="nav-item" *ngIf="loggedIn">
+        <li class="nav-item" *ngIf="loggedIn && isAdmin">
           <a class="nav-link" [routerLink]="'/profiles'">Profiles</a>
         </li>
         <li class="nav-item" >
-          <a class="nav-link" [routerLink]="'/'">About Us</a>
-        </li>       
+          <a class="nav-link" [routerLink]="'/about-us'">About Us</a>
+        </li> 
+        <li class="nav-item" >
+          <a class="nav-link" [routerLink]="'/dtc'">Disclaimer/TC</a>
+        </li>        
        
       </ul>
 

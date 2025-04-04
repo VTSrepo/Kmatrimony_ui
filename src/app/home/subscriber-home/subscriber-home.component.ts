@@ -41,6 +41,15 @@ export class SubscriberHomeComponent implements OnInit {
     
   }
 
+  reloadHome(){
+    this.homeService.shortlistings({profile_code:this.myProfiles[0].profile_code}).subscribe((res) => {
+      this.shortlistings = res;
+      this.showMatchTable = false
+    });
+
+    
+  }
+
   matchEmitter(profile: any) {
     this.showMatchTable = true;
     this.profile = profile;
