@@ -24,10 +24,18 @@ export class HeaderComponent implements OnInit {
     this.as.loginObs.subscribe((data) => {
       this.loggedIn = data;
     });
+    this.auth.isAdmin$.subscribe((isAdmin) => {
+      if(!isAdmin){
+        this.isAdmin = (JSON.parse(localStorage.getItem('user') || '{}').user_type === 'A')
+      }else {
+        this.isAdmin = isAdmin;
+      }
+      
+    });
   }
   ngOnInit() {
-  this.isAdmin = JSON.parse(localStorage.getItem('user')|| '{}').user_type === 'A'?true:false;
-  console.log(this.isAdmin)  
+  // this.isAdmin = JSON.parse(localStorage.getItem('user')|| '{}').user_type === 'A'?true:false;
+  // console.log(this.isAdmin)  
 
   }
 
