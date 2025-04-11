@@ -38,7 +38,7 @@
   >
     <div class="container">
       <h3>Personal Details</h3>
-      <div class="row" [ngClass]="{ 'form-disabled': isAdmin === false }">
+      <div class="row">
         <div class="profile-form">
           <div class="row">
             <div class="form-group col-lg-2">
@@ -601,14 +601,24 @@
             </div>
           </div>
         </div>
-      </div>     
-      <div class="btn-container row mt-3 mb-3">
-        <div class="text-center" *ngIf="isAdmin">
-          <button class="btn btn-primary" (click)="save()">Save</button>
-        </div>
-        <div class="text-center" *ngIf="!isAdmin">
-          <button class="btn btn-primary" (click)="goBack()">Back</button>
-        </div>
+      </div>
+      <div class="btn-container mt-3">
+        <button
+          class="btn btn-primary"
+          [disabled]="
+            !profile.dob ||
+            !profile.birth_time ||
+            !profile.gothram ||
+            !profile.star ||
+            !profile.subsect ||
+            !profile.caste_sect ||
+            !profile.rasi
+          "
+          (click)="save()"
+        >
+          Save
+        </button>
+        <button class="btn btn-primary" (click)="goBack()">Back</button>
       </div>
     </div>
   </div>
@@ -619,8 +629,8 @@
     aria-labelledby="profile-tab"
     tabindex="0"
   >
-  <div class="container mt-3" *ngIf="profile.profile_code">
-    <app-file-upload [profileCode]="profile.profile_code"></app-file-upload>
-  </div>
+    <div class="container mt-3" *ngIf="profile.profile_code">
+      <app-file-upload [profileCode]="profile.profile_code"></app-file-upload>
+    </div>
   </div>
 </div>

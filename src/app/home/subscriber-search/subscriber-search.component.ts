@@ -3,6 +3,7 @@ import { HomeService } from '../home.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Profile } from 'src/app/shared/models/profile';
 import { CommonService, RefType } from 'src/app/shared/services/common.service';
+import { UtilityService } from 'src/app/shared/services/utility.service';
 
 interface SearchProfile {
   caste_sect: string;
@@ -45,7 +46,8 @@ export class SubscriberSearchComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     private authService: AuthService,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private us:UtilityService
   ) {}
 
   ngOnInit(): void {
@@ -93,7 +95,7 @@ export class SubscriberSearchComponent implements OnInit {
   matchprofilesSearch() {
     const params = {
       gendar: this.profile.gendar,
-      age: this.profile.age,
+      age: this.us.getAge(this.profile.dob),
       star: this.profile.star,
       profile_code: this.profile.profile_code,
     };

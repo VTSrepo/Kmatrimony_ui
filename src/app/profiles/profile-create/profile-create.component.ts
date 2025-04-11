@@ -415,7 +415,12 @@ export class ProfileCreateComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe((data) => {
-        this.router.navigate(['/profiles/home']);
+        if(this.isAdmin){
+          this.router.navigate(['/profiles/home']);
+        } else {
+          this.router.navigate(['/home']);
+        }
+        
       });
     });
   }

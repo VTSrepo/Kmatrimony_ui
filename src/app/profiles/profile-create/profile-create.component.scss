@@ -13,3 +13,13 @@
 .form-disabled {
     pointer-events: none;
 }
+
+.btn-container {
+    display: flex; /* This is the flex container */
+    justify-content: normal;
+    gap: 10px;
+  }
+
+  button {
+    padding: 10px 20px;
+  }

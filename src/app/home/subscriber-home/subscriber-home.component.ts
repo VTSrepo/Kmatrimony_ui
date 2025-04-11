@@ -3,6 +3,7 @@ import { HomeService } from '../home.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Profile } from 'src/app/shared/models/profile';
 import { CommonService, RefType } from 'src/app/shared/services/common.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-subscriber-home',
@@ -19,6 +20,7 @@ export class SubscriberHomeComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     private authService: AuthService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +41,10 @@ export class SubscriberHomeComponent implements OnInit {
       }
     });
     
+  }
+
+  gotoProfile() {
+    this.router.navigate(['/profiles/create-profile']);
   }
 
   reloadHome(){

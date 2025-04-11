@@ -1,3 +1,6 @@
+<div class="text-center mt-3" *ngIf="myProfiles.length === 0">
+  <button class="btn btn-primary" (click)="gotoProfile()">Create Profile</button>
+</div>
 <div class="accordion mt-3" id="admin-home-accordion" *ngIf="!showMatchTable">
   <div class="accordion-item">
     <h2 class="accordion-header">

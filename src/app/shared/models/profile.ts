@@ -4,7 +4,7 @@ export interface Profile {
   profile_name?: string;
   gendar?: string;
   profile_type?: string;
-  dob?: string;
+  dob: string;
   age: 0;
   caste_sect: string;
   subsect: string;
