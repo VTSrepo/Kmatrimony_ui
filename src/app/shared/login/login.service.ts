@@ -13,7 +13,7 @@ export class LoginApiService {
   logout() {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.get<any>(environment.apiUrl + 'user/logout', {
+    return this.http.get<any>(environment.localUrl + 'user/logout', {
       headers: headers,
     });
   }

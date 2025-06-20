@@ -305,6 +305,7 @@ export class ProfileCreateComponent implements OnInit {
   currentUrl = '';
 
   isAdmin: boolean = false;
+  isEditable: boolean = true;
 
   constructor(
     private utility: UtilityService,
@@ -358,6 +359,12 @@ export class ProfileCreateComponent implements OnInit {
       this.profile.dob = this.utility.convertTodayTostr(this.profile.dob);
       this.profile.age = this.utility.getAge(this.profile.dob);
       this.changeSect(this.profile.caste_sect);
+
+      //enable/disable form
+      const loggedinSubcriber = JSON.parse(
+        localStorage.getItem('user') || '{}'
+      ).subscriber_id;     
+      this.isEditable = this.profile.subscriber_id === loggedinSubcriber?true:false;
     } else {
       this.profile.marriage_status = 'UnMarried';
       this.profile.mother_tongue = 'Tamil';
