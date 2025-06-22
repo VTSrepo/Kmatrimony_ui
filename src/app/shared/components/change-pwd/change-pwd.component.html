@@ -1,0 +1,22 @@
+<div class="loginContainer">
+  <div class="loginMain">
+    <form class="loginModules">
+      <div class="loginHeading">
+        Change Password
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+        {{errorMessage}}
+      </div>
+      <label htmlFor="username" class="loginlabel">Subscriber ID</label>
+      <input type="text" disabled class="loginInput" [(ngModel)]="credentials.subscriber_id" name="username"/>
+      <!-- <label htmlFor="password" class="loginlabel">Current Password</label>
+      <input type="password" class="loginInput" [(ngModel)]="credentials.currentPwd" name="pasword"/>     -->
+     <label htmlFor="newPassword" class="loginlabel">New Password</label>
+      <input type="password" class="loginInput" [(ngModel)]="credentials.newPwd" name="newPassword"/>    
+
+      <div class="loginButtons">
+        <button class="loginButton"  [disabled]="!credentials.subscriber_id || !credentials.newPwd" (click)="onSubmit()">Submit</button>
+      </div>     
+    </form>
+  </div>
+</div>

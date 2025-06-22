@@ -16,6 +16,7 @@ import {SubscriberSearchTableComponent} from './components/subscriber-search-tab
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { MaterialModule } from '../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChangePwdComponent } from './components/change-pwd/change-pwd.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SubscriberSearchTableComponent,
     CarouselComponent,
     FileUploadComponent,
-    PhotoViewerComponent
+    PhotoViewerComponent,
+    ChangePwdComponent
   ],
   imports: [
     CommonModule,

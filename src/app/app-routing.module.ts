@@ -5,6 +5,7 @@ import { RegisterComponent } from './shared/register/register.component';
 import { ForgotPasswordComponent } from './shared/forgot-password/forgot-password.component';
 import { AboutUsComponent } from './shared/about-us/about-us.component';
 import { DisclaimerComponent } from './shared/disclaimer/disclaimer.component';
+import { ChangePwdComponent } from './shared/components/change-pwd/change-pwd.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent,
+  },
+  {
+    path: 'change-password',
+    component: ChangePwdComponent,
   },
   {
     path: 'home',
