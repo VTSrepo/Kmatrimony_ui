@@ -2,11 +2,27 @@
    color:white!important;
 }
 
-#footer {
-    //position: absolute;
-    //bottom: 0;
-    width: 100%;
-    background-color: #474b4f !important;
-    color:white
-    //height: 2.5rem;            /* Footer height */
+
+/* src/app/marquee/marquee.component.scss */
+.ad-container {
+  width: 100%;
+  overflow: hidden; // Hide content outside the container
+  white-space: nowrap; // Prevent text from wrapping
+  box-sizing: border-box;
+}
+
+.ad-scoll-content {
+  display: inline-block; // Allow content to be on one line  
+  animation: marquee-scroll 50s linear infinite; // Adjust speed as needed
+   position: relative; // Important for 'left' to work
+  left: 50%; // Start from center of parent
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0%);
   }
+  to {
+    transform: translateX(-100%); // Move content off-screen to the left
+  }
+}

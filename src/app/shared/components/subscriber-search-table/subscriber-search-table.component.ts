@@ -11,8 +11,7 @@ import { Router } from '@angular/router';
 })
 export class SubscriberSearchTableComponent implements OnInit {
   @Input()
-  set profileTableData(value: any) {
-    console.log(value);
+  set profileTableData(value: any) {    
     this.dataSource.data = value;
   }
   @Input() showListingAction = false;
@@ -62,7 +61,7 @@ export class SubscriberSearchTableComponent implements OnInit {
   }
 
   gotoProfile(profile: any) {
-    this.router.navigate(['/profiles/create-profile'], { state: profile });
+    this.router.navigate(['/profiles/create-profile'], { state: profile, queryParams:{match:true} });
   }
 
   loadMatch(profile: any) {

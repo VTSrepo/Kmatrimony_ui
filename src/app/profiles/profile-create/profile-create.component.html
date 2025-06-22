@@ -165,6 +165,7 @@
               <select
                 class="form-select"
                 aria-label="Default select example"
+                [disabled]="!isAdmin"
                 [(ngModel)]="profile.subscriber_id"
                 (change)="setSubscriberDetails(profile.subscriber_id)"
               >
@@ -605,6 +606,7 @@
       <div class="btn-container mt-3">
         <button
           class="btn btn-primary"
+          *ngIf="isEditable === true"
           [disabled]="
             !profile.dob ||
             !profile.birth_time ||

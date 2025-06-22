@@ -3,7 +3,7 @@ import { UtilityService } from 'src/app/shared/services/utility.service';
 import { ProfileService } from '../profile.service';
 import { MatDialog } from '@angular/material/dialog';
 import { InfoDialogComponent } from 'src/app/shared/info-dialog/info-dialog.component';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CommonService, RefType } from 'src/app/shared/services/common.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { filter } from 'rxjs';
@@ -305,6 +305,7 @@ export class ProfileCreateComponent implements OnInit {
   currentUrl = '';
 
   isAdmin: boolean = false;
+  routeToSearchMatch = false;
   isEditable: boolean = true;
 
   constructor(
@@ -313,17 +314,20 @@ export class ProfileCreateComponent implements OnInit {
     private commonService: CommonService,
     private dialog: MatDialog,
     private router: Router,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private route: ActivatedRoute
+  ) {
+    this.routeToSearchMatch =
+      this.route.snapshot.queryParamMap.get('match') === 'true';
+  }
 
   ngOnInit(): void {
     this.authService.isAdmin$.subscribe((isAdmin) => {
-      if(isAdmin){
+      if (isAdmin) {
         this.isAdmin = isAdmin;
       } else {
-        this.isAdmin = this.authService.validateAdmin()
+        this.isAdmin = this.authService.validateAdmin();
       }
-      
     });
 
     this.commonService.getReferenceData('Pfor').subscribe((pfor) => {
@@ -363,8 +367,9 @@ export class ProfileCreateComponent implements OnInit {
       //enable/disable form
       const loggedinSubcriber = JSON.parse(
         localStorage.getItem('user') || '{}'
-      ).subscriber_id;     
-      this.isEditable = this.profile.subscriber_id === loggedinSubcriber?true:false;
+      ).subscriber_id;
+      this.isEditable =
+        this.profile.subscriber_id === loggedinSubcriber ? true : false;
     } else {
       this.profile.marriage_status = 'UnMarried';
       this.profile.mother_tongue = 'Tamil';
@@ -422,12 +427,11 @@ export class ProfileCreateComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe((data) => {
-        if(this.isAdmin){
+        if (this.isAdmin) {
           this.router.navigate(['/profiles/home']);
         } else {
           this.router.navigate(['/home']);
         }
-        
       });
     });
   }
@@ -435,6 +439,11 @@ export class ProfileCreateComponent implements OnInit {
   goBack() {
     if (this.authService.previousUrl.includes('profiles')) {
       this.router.navigate(['/profiles/home']);
+    } else if (
+      this.authService.previousUrl.includes('home') &&
+      this.routeToSearchMatch
+    ) {
+      this.router.navigate(['/home'], {state: {retainSearch:true}});
     } else {
       this.router.navigate(['/home']);
     }

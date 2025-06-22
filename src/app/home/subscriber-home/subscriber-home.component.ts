@@ -11,49 +11,52 @@ import { Router } from '@angular/router';
   styleUrls: ['./subscriber-home.component.scss'],
 })
 export class SubscriberHomeComponent implements OnInit {
-  myProfiles:Profile[] = [];
-  shortlistings:Profile[] = [];
+  myProfiles: Profile[] = [];
+  shortlistings: Profile[] = [];
   isAdmin: boolean = false;
   showMatchTable = false;
-  profile!: Profile;  
+  profile!: Profile;
 
   constructor(
     private homeService: HomeService,
     private authService: AuthService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    
     this.homeService.profilesBySubscriberId().subscribe((res) => {
       this.myProfiles = res;
-      this.homeService.shortlistings({profile_code:this.myProfiles[0].profile_code}).subscribe((res) => {
-        this.shortlistings = res;
-      });
+      if (history.state && history.state.retainSearch) {
+        this.profile = this.myProfiles[0];
+        this.showMatchTable = true;
+      }
+      this.homeService
+        .shortlistings({ profile_code: this.myProfiles[0].profile_code })
+        .subscribe((res) => {
+          this.shortlistings = res;
+        });
     });
 
-    
     this.authService.isAdmin$.subscribe((isAdmin) => {
-      if(isAdmin){
+      if (isAdmin) {
         this.isAdmin = isAdmin;
       } else {
-        this.isAdmin = this.authService.validateAdmin()
+        this.isAdmin = this.authService.validateAdmin();
       }
     });
-    
   }
 
   gotoProfile() {
     this.router.navigate(['/profiles/create-profile']);
   }
 
-  reloadHome(){
-    this.homeService.shortlistings({profile_code:this.myProfiles[0].profile_code}).subscribe((res) => {
-      this.shortlistings = res;
-      this.showMatchTable = false
-    });
-
-    
+  reloadHome() {
+    this.homeService
+      .shortlistings({ profile_code: this.myProfiles[0].profile_code })
+      .subscribe((res) => {
+        this.shortlistings = res;
+        this.showMatchTable = false;
+      });
   }
 
   matchEmitter(profile: any) {
