@@ -39,7 +39,7 @@
     <div class="container">
       <h3>Personal Details</h3>
       <div class="row"  [ngClass]="{ 'form-disabled': isAdmin ===  false && isEditable === false }">
-        <div class="profile-form">
+        <div class="profile-form">          
           <div class="row">
             <div class="form-group col-lg-2">
               <label for="profile_for">Profile For</label>
@@ -173,7 +173,7 @@
                   *ngFor="let option of subscriberIdList"
                   [value]="option.subscriber_id"
                 >
-                  {{ option.subscriber_id }}-{{ option.subscriber_name }}
+                  {{ option.subscriber_name }} - {{ option.subscriber_id }}
                 </option>
               </select>
             </div>
@@ -606,7 +606,7 @@
       <div class="btn-container mt-3">
         <button
           class="btn btn-primary"
-          *ngIf="isEditable === true"
+          *ngIf="isAdmin === true || isEditable === true"
           [disabled]="
             !profile.dob ||
             !profile.birth_time ||
