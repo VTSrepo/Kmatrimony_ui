@@ -13,6 +13,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class FileUploadComponent implements OnInit {
   @Input() profileCode: string = '';
+  @Input() isEditable: boolean = false;
   selectedFile: File | null = null;
   uploadStatus: string = '';
   files: string[] = [];
