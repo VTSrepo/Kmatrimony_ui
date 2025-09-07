@@ -1,27 +1,25 @@
-name: Deploy to Linode VPS
+name: Deploy to Linode VPS  # ✅ This is just the workflow name
 
 on:
   push:
     branches: [ main ]
-  name: Deploy to Linode VPS
-  workflow_dispatch:  # 👈 This enables the "Run workflow" button in UI
+  workflow_dispatch:         # ✅ Enables manual trigger from GitHub UI
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up SSH
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-        chmod 600 ~/.ssh/id_ed25519
-        ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
 
-    - name: Deploy via rsync
-      run: |
-        rsync -avz --delete ./ ${{ secrets.USER }}@${{ secrets.HOST }}:/root/deploy/
-    
+      - name: Deploy via rsync
+        run: |
+          rsync -avz --delete ./ ${{ secrets.USER }}@${{ secrets.HOST }}:/root/deploy/
