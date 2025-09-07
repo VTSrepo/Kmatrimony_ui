@@ -3,6 +3,8 @@ name: Deploy to Linode VPS
 on:
   push:
     branches: [ main ]
+  name: Deploy to Linode VPS
+  workflow_dispatch:  # 👈 This enables the "Run workflow" button in UI
 
 jobs:
   deploy:
