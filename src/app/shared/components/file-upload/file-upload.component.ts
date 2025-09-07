@@ -18,11 +18,19 @@ export class FileUploadComponent implements OnInit {
   uploadStatus: string = '';
   files: string[] = [];
   types = ['Horoscope', 'Profile'];
-  uploadTypes = [{type:'Horoscope', hidden:false}, {type:'Profile1', hidden:false},{type:'Profile2', hidden:false}]
+  uploadTypes = [
+    { type: 'Horoscope', hidden: false },
+    { type: 'Profile1', hidden: false },
+    { type: 'Profile2', hidden: false },
+  ];
   doctype = '';
   isAdmin = false;
   uploadLimitReached = false;
-  uploadLimit = { profile1UploadCount: 0,profile2UploadCount: 0, horoscopeUploadCount: 0 };
+  uploadLimit = {
+    profile1UploadCount: 0,
+    profile2UploadCount: 0,
+    horoscopeUploadCount: 0,
+  };
 
   constructor(
     private fileUploadService: FileUploadService,
@@ -30,22 +38,22 @@ export class FileUploadComponent implements OnInit {
     private authService: AuthService
   ) {
     this.authService.isAdmin$.subscribe((isAdmin) => {
-      if(isAdmin){
+      if (isAdmin) {
         this.isAdmin = isAdmin;
       } else {
-        this.isAdmin = this.authService.validateAdmin()
+        this.isAdmin = this.authService.validateAdmin();
       }
     });
   }
 
-  ngOnInit(): void {    
-    this.refresh();   
+  ngOnInit(): void {
+    this.refresh();
   }
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
   }
-  
+
   uploadFile(): void {
     if (this.selectedFile) {
       const fileExtension = this.getFileExtension(this.selectedFile.name);
@@ -70,13 +78,12 @@ export class FileUploadComponent implements OnInit {
         next: (response) => {
           this.uploadStatus = 'File uploaded successfully!';
           this.resetPage();
-          this.refresh();          
+          this.refresh();
         },
         error: (error: HttpErrorResponse) => {
           this.uploadStatus = `Error: ${error.message}`;
         },
       });
-      
     } else {
       this.uploadStatus = 'Please select a file first.';
     }
@@ -88,19 +95,36 @@ export class FileUploadComponent implements OnInit {
     return ext ? '.' + ext : '';
   }
 
+  deleteFile(file: string) {
+    this.fileUploadService.deleteFile(file).subscribe((data) => {
+      alert(data.message);
+      this.refresh();
+    });
+  }
+
   resetPage() {
     this.selectedFile = null;
     this.doctype = '';
   }
 
-  verifyUploadLimit(){
-    if(this.uploadLimit.horoscopeUploadCount ===1 && this.uploadLimit.profile1UploadCount===1 && this.uploadLimit.profile2UploadCount===1){
-      this.uploadLimitReached =  true;
-    }
-    console.log(this.uploadLimitReached)
+  verifyUploadLimit() {
+    if (
+      this.uploadLimit.horoscopeUploadCount === 1 &&
+      this.uploadLimit.profile1UploadCount === 1 &&
+      this.uploadLimit.profile2UploadCount === 1
+    ) {
+      this.uploadLimitReached = true;
+    } else {
+      this.uploadLimitReached = false;
+    }    
   }
 
   refresh() {
+    this.uploadLimit = {
+    profile1UploadCount: 0,
+    profile2UploadCount: 0,
+    horoscopeUploadCount: 0,
+  };
     this.fileUploadService.getFilesList(this.profileCode).subscribe((res) => {
       this.files = res.files;
       this.files.forEach((file) => {
@@ -114,10 +138,10 @@ export class FileUploadComponent implements OnInit {
           this.uploadLimit.profile2UploadCount++;
         }
       });
-      console.log(this.uploadLimit)
-      this.uploadTypes[0].hidden = this.uploadLimit.horoscopeUploadCount>0
-      this.uploadTypes[1].hidden = this.uploadLimit.profile1UploadCount>0
-      this.uploadTypes[2].hidden = this.uploadLimit.profile2UploadCount>0
+      console.log(this.uploadLimit);
+      this.uploadTypes[0].hidden = this.uploadLimit.horoscopeUploadCount > 0;
+      this.uploadTypes[1].hidden = this.uploadLimit.profile1UploadCount > 0;
+      this.uploadTypes[2].hidden = this.uploadLimit.profile2UploadCount > 0;
       this.verifyUploadLimit();
     });
   }

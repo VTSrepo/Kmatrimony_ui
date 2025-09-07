@@ -32,4 +32,12 @@ export class FileUploadService {
       responseType: 'blob',
     });
   }
+
+  public deleteFile(fileName: string): Observable<any> {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(environment.localUrl + 'deleteFile?filename=' + fileName, {
+      headers: headers,
+    });
+  }
 }

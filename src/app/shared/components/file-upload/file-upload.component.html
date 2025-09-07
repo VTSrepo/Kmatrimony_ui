@@ -35,7 +35,8 @@
     <thead>
       <tr>        
         <th scope="col">File</th>
-        <th scope="col">Action</th>        
+        <th scope="col">View</th> 
+        <th scope="col">Delete</th>       
       </tr>
     </thead>
     <tbody>
@@ -49,6 +50,13 @@
             aria-label="Example home icon"
             (click)="viewImage(file)"
             >remove_red_eye</mat-icon
+          ></button></td>
+          <td><button><mat-icon
+            title="delete"
+            class="delete"
+            aria-hidden="false"            
+            (click)="deleteFile(file)"
+            >delete</mat-icon
           ></button></td>
       </tr>
       

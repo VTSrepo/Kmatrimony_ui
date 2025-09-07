@@ -18,6 +18,11 @@
       </ul>
     </div>
   </div> -->
+  <mat-expansion-panel hideToggle>
+  <mat-expansion-panel-header>
+    <mat-panel-title> Search Filters </mat-panel-title>
+    <mat-panel-description> Expand or collpase the filters </mat-panel-description>
+  </mat-expansion-panel-header>
   <div class="row mt-3 mb-3">
     <div class="form-group col-lg-2">
       <label for="gothram">Gothram</label>
@@ -193,6 +198,8 @@
       <button class="btn btn-primary" (click)="search()">Search</button>
     </div>
   </div>
+</mat-expansion-panel>
+  
   <div class="row mt-3 pb-3" *ngIf="tableData.length > 0">
     <div>
       <strong>{{ tableData.length }}</strong> Records found.
