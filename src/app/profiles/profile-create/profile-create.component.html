@@ -162,12 +162,17 @@
 
             <div class="form-group col-lg-3">
               <label for="">Subscriber</label>
+              <input  id="subscriber"
+                type="text"
+                class="form-control"
+                name="education" disabled [value]="profile.subscriber_id" *ngIf="!this.showSubscriberListBox"/>
               <select
                 class="form-select"
                 aria-label="Default select example"
                 [disabled]="!isAdmin"
                 [(ngModel)]="profile.subscriber_id"
                 (change)="setSubscriberDetails(profile.subscriber_id)"
+                *ngIf="showSubscriberListBox"
               >
                 <option
                   *ngFor="let option of subscriberIdList"

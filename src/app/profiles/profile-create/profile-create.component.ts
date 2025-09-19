@@ -307,6 +307,7 @@ export class ProfileCreateComponent implements OnInit {
   isAdmin: boolean = false;
   routeToSearchMatch = false;
   isEditable: boolean = true;
+  showSubscriberListBox = false;
 
   constructor(
     private utility: UtilityService,
@@ -379,14 +380,19 @@ export class ProfileCreateComponent implements OnInit {
       this.changeSect('Iyer');
     }
 
-    this.commonService.getSubscriberIds().subscribe((response) => {
-      this.subscriberIdList = response.data;
-      if (!this.profile.subscriber_id) {
-        this.profile.subscriber_id = this.subscriberIdList[0].subscriber_id;
-        this.profile.subscription_end_date =
-          this.subscriberIdList[0].subscription_upto;
-      }
-    });
+    if(this.isAdmin && !this.profile.subscriber_id){
+      this.showSubscriberListBox = true;
+      this.commonService.getSubscriberIds().subscribe((response) => {
+            this.subscriberIdList = response.data;
+            if (!this.profile.subscriber_id) {
+              this.profile.subscriber_id = this.subscriberIdList[0].subscriber_id;
+              this.profile.subscription_end_date =
+                this.subscriberIdList[0].subscription_upto;
+            }
+          });
+          }
+
+    
   }
 
   setAge(dob: string) {
