@@ -23,7 +23,9 @@ export class SubscriberSearchTableComponent implements OnInit {
   ngOnInit(): void {}
 
   displayedColumns: string[] = [
-    'profile_name',    
+    'profile_name', 
+     'action',
+    'sortlist',   
     'dob',
     'age',
     'gothram',
@@ -34,8 +36,7 @@ export class SubscriberSearchTableComponent implements OnInit {
     'rasi',
     'education',
     'job_location',
-    'action',
-    'sortlist',
+   
   ];
 
   applyFilter(filterValue: string) {

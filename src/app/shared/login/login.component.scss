@@ -48,8 +48,8 @@
     width: 6rem;
     border-radius: 6px;
     border: none;
-    color: #fff;
-    background-color: #00b4d8;
+    color: #ffd700;
+    background-color: #004a3f;
     font-size: 14px;
     &:disabled{
       opacity: 0.5;
@@ -57,7 +57,8 @@
   }
   
   .loginButton:hover{
-    background-color: #00b4d8;
+    color: #004a3f;
+    background-color: #ffd700;
   }
   
   .loginlabel {
