@@ -5,7 +5,7 @@ import { Profile } from 'src/app/shared/models/profile';
 import { CommonService, RefType } from 'src/app/shared/services/common.service';
 import { UtilityService } from 'src/app/shared/services/utility.service';
 
-interface SearchProfile {
+export interface SearchProfile {
   caste_sect: string;
   subsect: string;
   star_paadam: string;

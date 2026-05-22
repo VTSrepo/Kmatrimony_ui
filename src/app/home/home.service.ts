@@ -62,4 +62,12 @@ export class HomeService {
     return this.http.post(environment.localUrl + 'removeShortListProfile',params,
       { headers: headers})
   }
+
+
+   public publicSearch(params:any): Observable<any> {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(environment.localUrl + 'searchPublic',params,
+      { headers: headers})
+  }
 }

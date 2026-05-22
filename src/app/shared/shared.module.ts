@@ -17,6 +17,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
 import { MaterialModule } from '../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChangePwdComponent } from './components/change-pwd/change-pwd.component';
+import { PublicSearchTableComponent } from './components/public-search-table/public-search-table.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ChangePwdComponent } from './components/change-pwd/change-pwd.component
     CarouselComponent,
     FileUploadComponent,
     PhotoViewerComponent,
-    ChangePwdComponent
+    ChangePwdComponent,
+    PublicSearchTableComponent
   ],
   imports: [
     CommonModule,
@@ -52,7 +54,8 @@ import { ChangePwdComponent } from './components/change-pwd/change-pwd.component
     CarouselComponent,
     SubscriberSearchTableComponent,
     FileUploadComponent,
-    PhotoViewerComponent
+    PhotoViewerComponent,
+    PublicSearchTableComponent
   ],
 })
 export class SharedModule {}

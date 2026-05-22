@@ -29,6 +29,9 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="'/home'">Home</a>
         </li>
+        <li class="nav-item" *ngIf="!loggedIn">
+          <a class="nav-link" [routerLink]="'/public-search'">Profiles List</a>
+        </li> 
         <li class="nav-item" *ngIf="loggedIn && isAdmin">
           <a class="nav-link" [routerLink]="'/profiles'">Profiles</a>
         </li>
@@ -38,7 +41,7 @@
         <li class="nav-item" >
           <a class="nav-link" [routerLink]="'/dtc'">Disclaimer/TC</a>
         </li>        
-       
+        
       </ul>
 
 

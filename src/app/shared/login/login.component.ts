@@ -18,6 +18,7 @@ export class LoginComponent {
     password: '',
   };
   acceptTC = false;
+  showPassword = false;
   errorMessage: string = '';
 
   constructor(

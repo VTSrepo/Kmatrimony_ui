@@ -6,6 +6,7 @@ import { ForgotPasswordComponent } from './shared/forgot-password/forgot-passwor
 import { AboutUsComponent } from './shared/about-us/about-us.component';
 import { DisclaimerComponent } from './shared/disclaimer/disclaimer.component';
 import { ChangePwdComponent } from './shared/components/change-pwd/change-pwd.component';
+import { PublicSearchComponent } from './public-search/public-search.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
     path: 'profiles',
     loadChildren: () =>
       import('./profiles/profiles.module').then((m) => m.ProfilesModule),
+  },
+  {
+    path: 'public-search',
+    component: PublicSearchComponent,
   },
 ];
 

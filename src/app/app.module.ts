@@ -12,18 +12,22 @@ import { AppService } from './app.service';
 import { CanActivateRoute, Permissions } from './shared/services/authguard.service';
 import { AboutUsComponent } from './shared/about-us/about-us.component';
 import { DisclaimerComponent } from './shared/disclaimer/disclaimer.component';
+import { PublicSearchComponent } from './public-search/public-search.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     AboutUsComponent,
-    DisclaimerComponent
+    DisclaimerComponent,
+    PublicSearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
     
   ],
   providers: [AppService,Permissions,{

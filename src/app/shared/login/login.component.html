@@ -10,7 +10,12 @@
       <label htmlFor="username" class="loginlabel">Username</label>
       <input type="text" class="loginInput" [(ngModel)]="credentials.username" name="username"/>
       <label htmlFor="password" class="loginlabel">Password</label>
-      <input type="password" class="loginInput" [(ngModel)]="credentials.password" name="pasword"/>
+      <div class="password-wrapper">
+        <input [type]="showPassword ? 'text' : 'password'" class="loginInput" [(ngModel)]="credentials.password" name="password"/>
+        <button type="button" class="password-toggle" (click)="showPassword = !showPassword" aria-label="Toggle password visibility">
+          <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </div>
       <div class="form-check">
         <input class="form-check-input" type="checkbox" name="acceptTC"  id="flexCheckDefault" [(ngModel)]="acceptTC"
         (change)="checkValue(acceptTC?'acceptTC=true':'acceptTC=false')">
